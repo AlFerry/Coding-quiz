@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <head>
         <title>Coding Quiz!</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
-        <script src="assets/js/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="./assets/style.css" />
     </head>
 
     <body>
         <header>
-            <h1>Chaotic Coding Quiz!</h1>
-            <h3>Challenge your friends!</h2>
-            <button class="startButton">START</button>
+            <h1>Chaotic Coding Quiz</h1>
+            <h3>Challenge your friends!</h3>
+
         </header>
 
         <main>
-            <section class="game"></section>
-            <aside>
-                <section class="timer">
-                    <h2>Seconds remaining: <div id="timerText"></div></h2>
-                </section>
-                <section class="highScores">
+            <section class="question">
+                <section id="questionText"><h3>Let's play!</h3></section>
+                <button id="start-button">START</button>            
+            </section>
+            <section class="quiz" id="quiz">Hello</section>
+            <section>
+                <aside class="time">
+                    <div class = "timer-text">
+                        <div class="large-font timer-count">60</div>
+                        <h3>seconds remaining</h3>
+                    </div>
+                </aside>
+                <aside class="highScores">
                     <h2>High Scores:</h2>
                     <table id="scoreRecords"></table>
-                </section>
-            </aside>
+                </aside>
+            </section>
         </main>
+        <script src="./assets/script.js"></script>
     </body>
 
 </html>
