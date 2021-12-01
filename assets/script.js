@@ -20,7 +20,8 @@ var questions = [
         ["mkdir", "git clone", "clear", "touch"]
     ],
 ]
-
+var question = document.querySelector("#questionText");
+question.innerHTML=questions[1][0]; 
 function timer(){
     
     var timerInterval = setInterval(function() {
@@ -37,9 +38,18 @@ function timer(){
     }, 1000);
 }
 
-function game(){
+/*function printQuestion(){
+    
+    
+    for(var i = 0; timeLeft>0; i++){
+        
+    }
+}*/
+
+function Setupgame(){
     timer();
-    var questionEl=document.querySelector(".question");
+    //printQuestion();
+    var questionEl=document.querySelector(".startScreen");
     var quizEl = document.getElementById("quiz");
     if (quizEl.style.display === "none") {
         quizEl.style.display = "block";
@@ -56,6 +66,7 @@ function game(){
 
 console.log(questions);
 
-document.querySelector(".question").style.display = "block";
+document.querySelector(".startScreen").style.display = "block";
 document.getElementById("quiz").style.display = "none";
-startButton.addEventListener("click", game);
+startButton.addEventListener("click", Setupgame);
+
