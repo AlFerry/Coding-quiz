@@ -27,6 +27,26 @@ var questions = [
         0,
         ["mkdir", "git clone", "clear", "touch"]
     ],
+    [
+        "In what kind of variable could the word 'potato' be stored?",
+        1,
+        ["Boolean", "string", "number", "none"]
+    ],
+    [
+        "What does DOM stand for?",
+        3,
+        ["Dads On Mountains", "Document Order Maker", "Different Object Model", "Document Object Model"]
+    ],
+    [
+        "What is jQuery?",
+        3,
+        ["A type of variable", "A Pokemon", "A built-in function", "A third-party API"]
+    ],
+    [
+        "What is the window object?",
+        1,
+        ["A text input box", "The browser window", "The console", "A pane of glass"]
+    ],
 ]
 
 function timer(){
@@ -39,7 +59,7 @@ function timer(){
         // Stops execution of action at set interval
         clearInterval(timerInterval);
         // Calls function to create and append image\\
-        alert("Game over!");
+        window.location.href = "https://www.madetrade.com/";
         }
 
     }, 1000);
@@ -55,20 +75,17 @@ function checkAns(event){
     if (chosenAnswer == questions[answerIndex][1]) {
         feedback.innerHTML = "Correct!";
         answerIndex++;
-        if(answerIndex<=answers.length&&timeLeft>0){
+        if(answerIndex<=questions.length){
             printQuestion(answerIndex);
         }
         else{
-            //end
+            window.location.href = "https://www.madetrade.com/";
         }
     }
 
     else {
         feedback.innerHTML = "Incorrect, try again!";
         timeLeft = timeLeft - 3;
-        if(timeLeft<=0){
-            //end
-        }
     }
 }
 
