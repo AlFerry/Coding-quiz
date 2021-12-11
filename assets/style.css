@@ -60,14 +60,22 @@ section {
     display: inline;
     text-align: center;
     width: 60vw;
-    height: 400px;
+    height: 500px;
 }
 
 .quiz {
     display: none;
     text-align: center;
     width: 60vw;
-    height: 400px;
+    height: 500px;
+}
+
+.scoreScreen {
+    display: flex;
+    text-align: left;
+    width: 60vw;
+    height: 500px;
+    
 }
 
 

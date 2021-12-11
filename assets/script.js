@@ -14,12 +14,56 @@ var playerID;
 var scoreEl = document.querySelector("#currentScore");
 var score = 0;
 
-
-var highScores = document.querySelector("#highScores");
+var highScores = document.querySelector("#seeScores");
 //highScores.textContent = scoreArray;
+/*function populateHighScores(){
+
+
+    function populateTableHead(table, allScores){
+        var tHead = table.creatTHead();
+        var row = thead.insertRow();
+        for(var i of allScores){
+            var th = document.createElement("th");
+            var text = document.createTextNode(i);
+            th.appendChild(text);
+            row.appendChild(th);
+        }
+    }
+
+    function populateTable(table, allScores){
+        for(var i of allScores){
+            var cell = row.insertCell();
+            var text = document.createTextNode(allScores[i]);
+            cell.appendChild(text);
+        }
+    }
+
+    var allScores=JSON.parse(localStorage.getItem("scoreArray"));
+    var table = document.querySelector("table");
+    populateTableHead(table, allScores);
+    populateTable(table, allScores);
+
+}*/
+function populateHighScores(){
+    var allScores=JSON.parse(localStorage.getItem("scoreArray"));
+    var c1=document.querySelector("#col1");
+    var c2=document.querySelector("#col2");
+    var c3=document.querySelector("#col3");
+    var i;
+    var limit = 15;
+    if (allScores.length < limit){
+        limit=allScores.length;
+    }
+    for(i=0; i<limit; i++){
+        var currentEntry = allScores[i];
+        c1.innerHTML += i+1+".<br>";
+        c2.innerHTML += currentEntry["initials"] +"<br>";
+        c3.innerHTML += currentEntry["score"] +"<br>";
+    }
+}
 
 function updateHighScores(){
-    var playerID=prompt("GAME OVER! </br> Please enter your initials to store your score:", "");
+    var playerID=prompt("GAME OVER! Please enter your initials to store your score of "+score+":", "");
     var existingScores = JSON.parse(localStorage.getItem("scoreArray"));
     if(existingScores == null) existingScores = [];
     var entry ={
@@ -28,14 +72,23 @@ function updateHighScores(){
     };
     localStorage.setItem("entry", JSON.stringify(entry));
     existingScores.push(entry);
+    existingScores.sort(function(a,b){return b["score"]-a["score"]});
     localStorage.setItem("scoreArray", JSON.stringify(existingScores));
     console.log(JSON.parse(localStorage.getItem("scoreArray")));
-    }
+    showHighScores();
+}
 
-/*function showHighScores(){
-    
+function showHighScores(){
+    populateHighScores();
+    var startBox = document.querySelector(".startScreen");
+    var quizEl = document.getElementById("quiz");
+    var scoreboard = document.querySelector(".scoreScreen");
 
-}*/
+    startBox.style.display = "none";
+    quizEl.style.display = "none";
+    scoreboard.style.display = "block";
+
+}
 
 var questions = [
     [
@@ -81,7 +134,7 @@ function timer(){
         timeLeft--;
         timerEl.textContent = timeLeft;
 
-        if(timeLeft === 0) {
+        if(timeLeft <= 0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
         updateHighScores();
@@ -107,7 +160,7 @@ function checkAns(event){
         }
         else{
             score=score+timeLeft;
-            updateHighScores();
+            timeLeft=1;
         }
     }
 
@@ -148,9 +201,8 @@ function Setupgame(event) {
 
 }
 
-console.log(questions);
 
-//object.addEventListener("load", scores);
+
 document.querySelector(".startScreen").style.display = "block";
 document.getElementById("quiz").style.display = "none";
 document.querySelector(".scoreScreen").style.display = "none";
@@ -159,4 +211,6 @@ a1.addEventListener("click", checkAns);
 a2.addEventListener("click", checkAns);
 a3.addEventListener("click", checkAns);
 a4.addEventListener("click", checkAns);
+
+highScores.addEventListener("click", showHighScores);
 
