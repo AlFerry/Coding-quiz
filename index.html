@@ -16,7 +16,7 @@
 
         <main>
             <section class="startScreen">
-                <section><h3>Let's play!</h3></section>
+                <h2>Let's play!</h2>
                 <button id="start-button">START</button>            
             </section>
             <section class="quiz" id="quiz">
@@ -27,16 +27,24 @@
                 <button class="answer" id="answer4" data-answer="3"></button>
                 <h4 id="response"></h4>
             </section>
+            <section class="scoreScreen" id="scoreScreen">
+                <h2>Who's the best?</h3>
+                <table id="highScores"></table>            
+            </section>
             <section>
                 <aside class="time">
                     <div class = "timer-text">
                         <div class="large-font timer-count">60</div>
                         <h3>seconds remaining</h3>
+                    </br>
+                    
                     </div>
                 </aside>
-                <aside class="highScores">
-                    <h2>High Scores:</h2>
-                    <table id="scoreRecords"></table>
+                <aside class="scoreCard">
+                    <button class="seeScores" id="seeScores">See high scores</button>
+                    </br>
+                    <h2>Current score:</h2>
+                    <h2 id=currentScore class="large-font">0</h2>
                 </aside>
             </section>
         </main>

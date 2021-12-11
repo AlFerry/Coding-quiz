@@ -10,6 +10,32 @@ var a4 = document.querySelector("#answer4");
 var feedback = document.querySelector("#response");
 var answerSelected = 0;
 var chosenAnswer;
+var playerID;
+var scoreEl = document.querySelector("#currentScore");
+var score = 0;
+
+
+var highScores = document.querySelector("#highScores");
+//highScores.textContent = scoreArray;
+
+function updateHighScores(){
+    var playerID=prompt("GAME OVER! </br> Please enter your initials to store your score:", "");
+    var existingScores = JSON.parse(localStorage.getItem("scoreArray"));
+    if(existingScores == null) existingScores = [];
+    var entry ={
+        "initials": playerID,
+        "score": score
+    };
+    localStorage.setItem("entry", JSON.stringify(entry));
+    existingScores.push(entry);
+    localStorage.setItem("scoreArray", JSON.stringify(existingScores));
+    console.log(JSON.parse(localStorage.getItem("scoreArray")));
+    }
+
+/*function showHighScores(){
+    
+
+}*/
 
 var questions = [
     [
@@ -58,8 +84,8 @@ function timer(){
         if(timeLeft === 0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
-        // Calls function to create and append image\\
-        window.location.href = "https://www.madetrade.com/";
+        updateHighScores();
+        
         }
 
     }, 1000);
@@ -68,18 +94,20 @@ function timer(){
 function checkAns(event){
     console.log(event.target);
     console.log(questions[2][1]);
-
+    
     chosenAnswer = event.target.dataset.answer;
     answerSelected = 1;
     
     if (chosenAnswer == questions[answerIndex][1]) {
         feedback.innerHTML = "Correct!";
         answerIndex++;
-        if(answerIndex<=questions.length){
+        score=score + 5;
+        if(answerIndex<questions.length){
             printQuestion(answerIndex);
         }
         else{
-            window.location.href = "https://www.madetrade.com/";
+            score=score+timeLeft;
+            updateHighScores();
         }
     }
 
@@ -96,6 +124,7 @@ function printQuestion(){
         a2.innerHTML=questions[answerIndex][2][1];
         a3.innerHTML=questions[answerIndex][2][2];
         a4.innerHTML=questions[answerIndex][2][3];
+        scoreEl.textContent = score;
 }
 
 function Setupgame(event) {
@@ -103,40 +132,28 @@ function Setupgame(event) {
     timer();
     answerIndex = 0;
     
-    var questionEl = document.querySelector(".startScreen");
+    var startBox = document.querySelector(".startScreen");
     var quizEl = document.getElementById("quiz");
     if (quizEl.style.display === "none") {
         quizEl.style.display = "block";
     } else {
         quizEl.style.display = "none";
     }
-    if (questionEl.style.display === "none") {
-        questionEl.style.display = "block";
+    if (startBox.style.display === "none") {
+        startBox.style.display = "block";
     } else {
-        questionEl.style.display = "none";
+        startBox.style.display = "none";
     }
     printQuestion(answerIndex);
-   // while (timeLeft >= 0) {
-     /*   if (answerSelected == 1) {
-            if (chosenAnswer == questions[answerIndex][1]) {
-                feedback.innerHTML = "Correct!";
-                correct = 1;
-                printQuestion(answerIndex++);
-            }
 
-            else {
-                feedback.innerHTML = "Incorrect, try again!";
-                timeLeft = timeLeft - 3;
-            }
-            answerSelected = 0;
-        }*/
-   // }
 }
 
 console.log(questions);
 
+//object.addEventListener("load", scores);
 document.querySelector(".startScreen").style.display = "block";
 document.getElementById("quiz").style.display = "none";
+document.querySelector(".scoreScreen").style.display = "none";
 startButton.addEventListener("click", Setupgame);
 a1.addEventListener("click", checkAns);
 a2.addEventListener("click", checkAns);

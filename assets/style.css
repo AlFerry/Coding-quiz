@@ -69,3 +69,9 @@ section {
     width: 60vw;
     height: 400px;
 }
+
+
+.scoreCard a{
+    color:var(--dark);
+    text-decoration: none;
+}
