@@ -69,14 +69,27 @@ section {
     width: 60vw;
     height: 500px;
 }
-
 .scoreScreen {
     display: flex;
-    text-align: left;
+    text-align: center;
     width: 60vw;
     height: 500px;
-    
+    font-size: 24px;
+    font-weight: bold;
 }
+.highScores {
+    display: flex;
+    text-align: left;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    margin-top:0px;
+}
+.collumn{
+    width: 20%;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
 
 
 .scoreCard a{

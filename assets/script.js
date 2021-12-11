@@ -1,56 +1,29 @@
-
+//Define variables that will either get feedback from or write
 var startButton = document.querySelector("#start-button");
 var timerEl = document.querySelector(".timer-count");
-var timeLeft = 60;
 var question = document.querySelector("#questionText");
 var a1 = document.querySelector("#answer1");
 var a2 = document.querySelector("#answer2");
 var a3 = document.querySelector("#answer3");
 var a4 = document.querySelector("#answer4");
 var feedback = document.querySelector("#response");
+var scoreEl = document.querySelector("#currentScore");
+var timeLeft = 60;
 var answerSelected = 0;
 var chosenAnswer;
 var playerID;
-var scoreEl = document.querySelector("#currentScore");
 var score = 0;
 
 var highScores = document.querySelector("#seeScores");
 //highScores.textContent = scoreArray;
-/*function populateHighScores(){
 
-
-    function populateTableHead(table, allScores){
-        var tHead = table.creatTHead();
-        var row = thead.insertRow();
-        for(var i of allScores){
-            var th = document.createElement("th");
-            var text = document.createTextNode(i);
-            th.appendChild(text);
-            row.appendChild(th);
-        }
-    }
-
-    function populateTable(table, allScores){
-        for(var i of allScores){
-            var cell = row.insertCell();
-            var text = document.createTextNode(allScores[i]);
-            cell.appendChild(text);
-        }
-    }
-
-    var allScores=JSON.parse(localStorage.getItem("scoreArray"));
-    var table = document.querySelector("table");
-    populateTableHead(table, allScores);
-    populateTable(table, allScores);
-
-}*/
 function populateHighScores(){
     var allScores=JSON.parse(localStorage.getItem("scoreArray"));
     var c1=document.querySelector("#col1");
     var c2=document.querySelector("#col2");
     var c3=document.querySelector("#col3");
     var i;
-    var limit = 15;
+    var limit = 10;
     if (allScores.length < limit){
         limit=allScores.length;
     }
@@ -126,6 +99,21 @@ var questions = [
         1,
         ["A text input box", "The browser window", "The console", "A pane of glass"]
     ],
+    [
+        "Which of the following is not a semantic HTML element?",
+        2,
+        ["footer", "main", "div", "title"]
+    ],
+    [
+        "What tag should a developer add to a displayed image to increase site accessibilty?",
+        1,
+        ["span", "alt", "title", "img"]
+    ],
+    [
+        "What does www stand for?",
+        2,
+        ["Wide world wings", "Welsh world war", "World wide web", "Whiny weasels waltzing"]
+    ],
 ]
 
 function timer(){
@@ -145,8 +133,6 @@ function timer(){
 }
 
 function checkAns(event){
-    console.log(event.target);
-    console.log(questions[2][1]);
     
     chosenAnswer = event.target.dataset.answer;
     answerSelected = 1;
@@ -160,6 +146,7 @@ function checkAns(event){
         }
         else{
             score=score+timeLeft;
+            scoreEl.textContent = score;
             timeLeft=1;
         }
     }
