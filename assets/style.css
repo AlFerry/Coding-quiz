@@ -2,12 +2,14 @@
     box-sizing: border-box;
 }
 
+/*Define variables for colors used on site*/
 :root{
     --dark: #143642;
     --head: #8AA39B;
     --bright: #A7FFF6;
 }
 
+/*Add styling for overarching elements*/
 body{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -18,7 +20,6 @@ body{
     background: var(--dark);
 }
 
-
 header{
     padding: 20px;
     text-align: center;
@@ -26,21 +27,6 @@ header{
     color: var(--dark)
 }
 
-button {
-    background: radial-gradient(circle, var(--bright) 0%, #71ada7 100%);
-    border-radius: 8px;
-    color:var(--dark);
-    cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 25px;
-    padding: 10px 15px;
-    text-align: center;
-    transition-duration: 0.15s;
-    transition-property: background-color;
-    transition-timing-function: linear;
-    margin-top: 0.6em;
-  }
 main {
     display: flex;
     flex-wrap: wrap;
@@ -56,6 +42,25 @@ section {
     border-radius: 8px;
 }
 
+/*Add styling for all buttons*/
+button {
+    background: radial-gradient(circle, var(--bright) 0%, #71ada7 100%);
+    border-radius: 8px;
+    color:var(--dark);
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    padding: 10px 15px;
+    text-align: center;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    transition-timing-function: linear;
+    margin-top: 0.6em;
+  }
+
+
+/*Add styling for specific classes and*/
 .startScreen {
     display: inline;
     text-align: center;
@@ -91,8 +96,3 @@ section {
 }
 
 
-
-.scoreCard a{
-    color:var(--dark);
-    text-decoration: none;
-}

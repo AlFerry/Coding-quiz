@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <!--Title of page and link to stylesheet-->
     <head>
         <title>Coding Quiz!</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,12 +8,14 @@
     </head>
 
     <body>
+        <!--The page header-->
         <header>
             <h1>Chaotic Coding Quiz</h1>
             <h3>Challenge your friends!</h3>
 
         </header>
-
+        <!--Main section contains cards that hide and unhide depending on what needs to be visible
+        Also has one permanant card that always shows the player's current score-->
         <main>
             <section class="startScreen">
                 <h2>Let's play!</h2>
@@ -29,11 +31,10 @@
             </section>
             <section class="scoreScreen" id="scoreScreen">
                 <h2>The best of the best</h3>
-                <!--<table id="highScores"></table>-->
                 <section class="highScores">
-                    <section class="collumn" id="col1"><h3>Rank</h3></section>
-                    <section class="collumn" id="col2"><h3>Player</h3></section>
-                    <section class="collumn" id="col3"><h3>Score</h3></section>
+                    <section class="collumn" id="col1"></section>
+                    <section class="collumn" id="col2"></section>
+                    <section class="collumn" id="col3"></section>
                 </section>            
             </section>
             <section>
@@ -53,6 +54,7 @@
                 </aside>
             </section>
         </main>
+        <!--Link to javascript file-->
         <script src="./assets/script.js"></script>
     </body>
 

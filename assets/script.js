@@ -1,4 +1,4 @@
-//Define variables that will either get feedback from or write
+//Define global variables that will either get feedback from or write to html elements
 var startButton = document.querySelector("#start-button");
 var timerEl = document.querySelector(".timer-count");
 var question = document.querySelector("#questionText");
@@ -8,20 +8,24 @@ var a3 = document.querySelector("#answer3");
 var a4 = document.querySelector("#answer4");
 var feedback = document.querySelector("#response");
 var scoreEl = document.querySelector("#currentScore");
+var highScores = document.querySelector("#seeScores");
+
+//Define global variables with null or starting values
 var timeLeft = 60;
 var answerSelected = 0;
 var chosenAnswer;
 var playerID;
 var score = 0;
 
-var highScores = document.querySelector("#seeScores");
-//highScores.textContent = scoreArray;
-
+//Populates high scores page from array stored in local storage
 function populateHighScores(){
     var allScores=JSON.parse(localStorage.getItem("scoreArray"));
     var c1=document.querySelector("#col1");
     var c2=document.querySelector("#col2");
     var c3=document.querySelector("#col3");
+    c1.innerHTML="Rank <br><br>";
+    c2.innerHTML="Player <br><br>";
+    c3.innerHTML="Score <br><br>"
     var i;
     var limit = 10;
     if (allScores.length < limit){
@@ -35,6 +39,7 @@ function populateHighScores(){
     }
 }
 
+//Updates array of high scores stored in local storage with current score
 function updateHighScores(){
     var playerID=prompt("GAME OVER! Please enter your initials to store your score of "+score+":", "");
     var existingScores = JSON.parse(localStorage.getItem("scoreArray"));
@@ -51,6 +56,7 @@ function updateHighScores(){
     showHighScores();
 }
 
+//Shows high score list
 function showHighScores(){
     populateHighScores();
     var startBox = document.querySelector(".startScreen");
@@ -63,6 +69,7 @@ function showHighScores(){
 
 }
 
+//A nested array containing quiz question and answers
 var questions = [
     [
         "Which of the following is NOT a JavaScript data type?", 
@@ -116,6 +123,7 @@ var questions = [
     ],
 ]
 
+//Function to iterate timer to count down and end game.
 function timer(){
     
     var timerInterval = setInterval(function() {
@@ -123,7 +131,7 @@ function timer(){
         timerEl.textContent = timeLeft;
 
         if(timeLeft <= 0) {
-        // Stops execution of action at set interval
+        // Stops timer
         clearInterval(timerInterval);
         updateHighScores();
         
@@ -132,6 +140,7 @@ function timer(){
     }, 1000);
 }
 
+//Checks answer when one is selected.
 function checkAns(event){
     
     chosenAnswer = event.target.dataset.answer;
@@ -157,6 +166,7 @@ function checkAns(event){
     }
 }
 
+//Prints questions and answers to quiz page
 function printQuestion(){
     
         question.innerHTML=questions[answerIndex][0]; 
@@ -167,6 +177,7 @@ function printQuestion(){
         scoreEl.textContent = score;
 }
 
+//Hides start screen and shows quiz, starts timer and the rest of quiz
 function Setupgame(event) {
     console.log(event.target);
     timer();
@@ -189,15 +200,16 @@ function Setupgame(event) {
 }
 
 
-
+//Initiate starting display styles
 document.querySelector(".startScreen").style.display = "block";
 document.getElementById("quiz").style.display = "none";
 document.querySelector(".scoreScreen").style.display = "none";
+
+//Add event listeners for all buttons
 startButton.addEventListener("click", Setupgame);
 a1.addEventListener("click", checkAns);
 a2.addEventListener("click", checkAns);
 a3.addEventListener("click", checkAns);
 a4.addEventListener("click", checkAns);
-
 highScores.addEventListener("click", showHighScores);
 
